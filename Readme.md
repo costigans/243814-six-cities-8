@@ -1,6 +1,6 @@
 # Личный проект «Шесть городов»
 
-* Студент: [Константин Соколов](https://up.htmlacademy.ru/react/8/user/243814).
+* Студент: [Константин Соколов](https://htmlacademy.ru/profile/k_sokolov).
 * Наставник: [Артём Рудов](https://htmlacademy.ru/profile/artrudov).
 
 ---
