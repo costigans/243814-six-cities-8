@@ -1,10 +1,10 @@
 import Place from '../place/place';
 
-type MainPageProps = {
+type MainProps = {
   placesCount: number;
 }
 
-function MainPage({placesCount}: MainPageProps): JSX.Element {
+function Main({placesCount}: MainProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -111,4 +111,4 @@ function MainPage({placesCount}: MainPageProps): JSX.Element {
   );
 }
 
-export default MainPage;
+export default Main;
