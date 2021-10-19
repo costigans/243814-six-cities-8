@@ -15,19 +15,20 @@ function App({placesCount}: AppProps): JSX.Element {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path={AppRoute.Root} exact>
+        <Route exact path={AppRoute.Root}>
           <Main placesCount={placesCount} />
         </Route>
-        <PrivateRoute path={AppRoute.Favorites} exact
+        <PrivateRoute
+          exact
+          path={AppRoute.Favorites}
           render={Favorites}
           authorizationStatus={AuthorizationStatus.NoAuth}
         >
-          <Favorites />
         </PrivateRoute>
-        <Route path={AppRoute.Login} exact>
+        <Route exact path={AppRoute.Login}>
           <SignIn />
         </Route>
-        <Route path={AppRoute.Offer} exact>
+        <Route exact path={AppRoute.Offer}>
           <Room />
         </Route>
         <Route>
