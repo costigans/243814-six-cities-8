@@ -1,10 +1,10 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { AppRoute } from '../../const';
 import Main from '../../pages/main/main';
-import NotFound from '../../pages/not-found/not-found';
 import SignIn from '../../pages/sign-in/sign-in';
-import Favorites from '../../pages/favorites/favorites';
-import PrivateRoute from '../private-route/private-route';
 import Room from '../../pages/room/room';
+import Favorites from '../../pages/favorites/favorites';
+import NotFound from '../../pages/not-found/not-found';
 
 type AppProps = {
   placesCount: number;
@@ -14,13 +14,21 @@ function App({placesCount}: AppProps): JSX.Element {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/" exact>
+        <Route path={AppRoute.Root} exact>
           <Main placesCount={placesCount} />
         </Route>
-        <PrivateRoute path="/favorites" exact component={Favorites} />
-        <Route path="/login" exact component={SignIn} />
-        <Route path="/offer/:id" exact component={Room} />
-        <Route component={NotFound} />
+        <Route path={AppRoute.Favorites} exact>
+          <Favorites />
+        </Route>
+        <Route path={AppRoute.Login} exact>
+          <SignIn />
+        </Route>
+        <Route path={AppRoute.Offer} exact>
+          <Room />
+        </Route>
+        <Route>
+          <NotFound />
+        </Route>
       </Switch>
     </BrowserRouter>
   );
