@@ -1,4 +1,4 @@
-import Place from '../place/place';
+import Place from '../../components/place/place';
 
 type MainProps = {
   placesCount: number;

@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import MainPage from '../main/main';
+import Main from '../../pages/main/main';
 import NotFound from '../../pages/not-found/not-found';
 
 type AppProps = {
@@ -11,11 +11,9 @@ function App({placesCount}: AppProps): JSX.Element {
     <BrowserRouter>
       <Switch>
         <Route path="/" exact>
-          <MainPage placesCount={placesCount} />
+          <Main placesCount={placesCount} />
         </Route>
-        <Route>
-          <NotFound />
-        </Route>
+        <Route component={NotFound} />
       </Switch>
     </BrowserRouter>
   );
