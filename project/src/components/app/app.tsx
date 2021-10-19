@@ -3,6 +3,7 @@ import Main from '../../pages/main/main';
 import NotFound from '../../pages/not-found/not-found';
 import SignIn from '../../pages/sign-in/sign-in';
 import Favorites from '../../pages/favorites/favorites';
+import PrivateRoute from '../private-route/private-route';
 import Room from '../../pages/room/room';
 
 type AppProps = {
@@ -16,7 +17,7 @@ function App({placesCount}: AppProps): JSX.Element {
         <Route path="/" exact>
           <Main placesCount={placesCount} />
         </Route>
-        <Route path="/favorites" exact component={Favorites} />
+        <PrivateRoute path="/favorites" exact component={Favorites} />
         <Route path="/login" exact component={SignIn} />
         <Route path="/offer/:id" exact component={Room} />
         <Route component={NotFound} />
