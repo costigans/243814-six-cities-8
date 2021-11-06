@@ -1,18 +1,20 @@
 type PlaceProps = {
   title: string,
   type: string,
-  price: number
+  price: number,
+  id?: number
 }
 
-function Place ({title, type, price}: PlaceProps): JSX.Element {
+function Place ({title, type, price, id}: PlaceProps): JSX.Element {
+  const offerUrl = `/offer/${id}`;
   return (
     <article className="cities__place-card place-card">
       <div className="place-card__mark">
         <span>Premium</span>
       </div>
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="#">
-          <img className="place-card__image" src="img/apartment-01.jpg" width="260" height="200" alt="Place image" />
+        <a href={offerUrl}>
+          <img className="place-card__image" src="img/apartment-01.jpg" width="260" height="200" alt="First view place" />
         </a>
       </div>
       <div className="place-card__info">
@@ -35,7 +37,7 @@ function Place ({title, type, price}: PlaceProps): JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{title}</a>
+          <a href={offerUrl}>{title}</a>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
