@@ -4,15 +4,20 @@ import BookmarkButton from '../bookmark-button/bookmark-button';
 import RatingBar from '../rating-bar/rating-bar';
 
 type PlaceProps = {
-  property: Property
+  property: Property,
+  setActiveOffer: any //TODO
 }
 
-function Place ({property}: PlaceProps): JSX.Element {
+function Place({property, setActiveOffer}: PlaceProps): JSX.Element {
   const offerUrl = `/offer/${property.id}`;
   const firstPhoto = property.photos[0];
 
   return (
-    <article className="cities__place-card place-card">
+    <article
+      className="cities__place-card place-card"
+      onMouseEnter={() => setActiveOffer(property.id)}
+      onMouseLeave={() => setActiveOffer(null)}
+    >
       {property.isPremium &&
         <div className="place-card__mark">
           <span>Premium</span>
