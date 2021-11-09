@@ -14,11 +14,13 @@ function ListPlaces({properties}: ListPlacesProps): JSX.Element {
       {properties.map((property) => {
         const keyValue = property.id;
 
-        return <Place
-                key={keyValue}
-                property={property}
-                setActiveOffer={setActiveOffer}
-                />;
+        return (
+          <Place
+            key={keyValue}
+            property={property}
+            setActiveOffer={setActiveOffer}
+          />
+        );
       })}
     </div>
   );

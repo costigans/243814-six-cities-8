@@ -6,19 +6,21 @@ import Room from '../../pages/room/room';
 import Favorites from '../../pages/favorites/favorites';
 import NotFound from '../../pages/not-found/not-found';
 import PrivateRoute from '../private-route/private-route';
-import {Property} from '../../types/property';
+import {offers} from '../../mocks/offers';
 
 type AppProps = {
   placesCount: number;
-  offers: Property[]
 }
 
-function App({placesCount, offers}: AppProps): JSX.Element {
+function App({placesCount}: AppProps): JSX.Element {
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path={AppRoute.Root}>
-          <Main placesCount={placesCount} />
+          <Main
+            placesCount={placesCount}
+            places={offers}
+          />
         </Route>
         <PrivateRoute
           exact

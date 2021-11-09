@@ -1,11 +1,12 @@
 import ListPlaces from '../../components/list-places/list-places';
-import {offers} from '../../mocks/offers';
+import {Property} from '../../types/property';
 
 type MainProps = {
   placesCount: number;
+  places: Property[];
 }
 
-function Main({placesCount}: MainProps): JSX.Element {
+function Main({placesCount, places}: MainProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -94,7 +95,7 @@ function Main({placesCount}: MainProps): JSX.Element {
                   <li className="places__option" tabIndex={0}>Top rated first</li>
                 </ul>
               </form>
-              <ListPlaces properties={offers} />
+              <ListPlaces properties={places} />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>
