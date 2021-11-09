@@ -6,12 +6,14 @@ import Room from '../../pages/room/room';
 import Favorites from '../../pages/favorites/favorites';
 import NotFound from '../../pages/not-found/not-found';
 import PrivateRoute from '../private-route/private-route';
+import {Property} from "../../types/property";
 
 type AppProps = {
   placesCount: number;
+  offers: Property[]
 }
 
-function App({placesCount}: AppProps): JSX.Element {
+function App({placesCount, offers}: AppProps): JSX.Element {
   return (
     <BrowserRouter>
       <Switch>
