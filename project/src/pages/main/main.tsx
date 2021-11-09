@@ -1,4 +1,5 @@
-import Place from '../../components/place/place';
+import ListPlaces from '../../components/list-places/list-places';
+import {offers} from '../../mocks/offers';
 
 type MainProps = {
   placesCount: number;
@@ -93,13 +94,7 @@ function Main({placesCount}: MainProps): JSX.Element {
                   <li className="places__option" tabIndex={0}>Top rated first</li>
                 </ul>
               </form>
-              <div className="cities__places-list places__list tabs__content">
-                <Place title="Beautiful &amp; luxurious apartment at great location" type="Apartment" price={120} />
-                <Place title="Wood and stone place" type="Private room" price={80} />
-                <Place title="Canal View Prinsengracht" type="Apartment" price={132} />
-                <Place title="Nice, cozy, warm big bed apartment" type="Apartment" price={180} />
-                <Place title="Wood and stone place" type="Private room" price={80} />
-              </div>
+              <ListPlaces properties={offers} />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>

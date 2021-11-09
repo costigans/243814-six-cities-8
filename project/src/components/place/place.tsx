@@ -3,12 +3,16 @@ import {Property} from '../../types/property';
 import BookmarkButton from '../bookmark-button/bookmark-button';
 import RatingBar from '../rating-bar/rating-bar';
 
-function Place (property: Property): JSX.Element {
+type PlaceProps = {
+  property: Property
+}
+
+function Place ({property}: PlaceProps): JSX.Element {
   const offerUrl = `/offer/${property.id}`;
   const firstPhoto = property.photos[0];
 
   return (
-    <article key={property.id} className="cities__place-card place-card">
+    <article className="cities__place-card place-card">
       {property.isPremium &&
         <div className="place-card__mark">
           <span>Premium</span>

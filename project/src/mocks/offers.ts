@@ -21,7 +21,7 @@ export const offers: Property[] = [
     ],
     type: 'Private room',
     price: 80,
-    rating: 4,
+    rating: 1.7,
     isPremium: false,
     isFavorite: false,
   },
