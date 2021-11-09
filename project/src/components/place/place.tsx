@@ -1,45 +1,36 @@
-type PlaceProps = {
-  title: string,
-  type: string,
-  price: number,
-  id?: number
-}
+import {Link} from 'react-router-dom';
+import {Property} from '../../types/property';
+import BookmarkButton from '../bookmark-button/bookmark-button';
+import RatingBar from '../rating-bar/rating-bar';
 
-function Place ({title, type, price, id}: PlaceProps): JSX.Element {
-  const offerUrl = `/offer/${id}`;
+function Place (property: Property): JSX.Element {
+  const offerUrl = `/offer/${property.id}`;
+  const firstPhoto = property.photos[0];
+
   return (
-    <article className="cities__place-card place-card">
-      <div className="place-card__mark">
-        <span>Premium</span>
-      </div>
+    <article key={property.id} className="cities__place-card place-card">
+      {property.isPremium &&
+        <div className="place-card__mark">
+          <span>Premium</span>
+        </div>}
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href={offerUrl}>
-          <img className="place-card__image" src="img/apartment-01.jpg" width="260" height="200" alt="First view place" />
-        </a>
+        <Link to={offerUrl}>
+          <img className="place-card__image" src={firstPhoto.src} width={firstPhoto.width} height={firstPhoto.height} alt={firstPhoto.altText} />
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
-            <b className="place-card__price-value">&euro;{price} </b>
+            <b className="place-card__price-value">&euro;{property.price} </b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
-            <svg className="place-card__bookmark-icon" width="18" height="19">
-              <use xlinkHref="#icon-bookmark"></use>
-            </svg>
-            <span className="visually-hidden">To bookmarks</span>
-          </button>
+          <BookmarkButton isFavorite={property.isFavorite} />
         </div>
-        <div className="place-card__rating rating">
-          <div className="place-card__stars rating__stars">
-            <span style={{width: '80%'}}></span>
-            <span className="visually-hidden">Rating</span>
-          </div>
-        </div>
+        <RatingBar score={property.rating} />
         <h2 className="place-card__name">
-          <a href={offerUrl}>{title}</a>
+          <Link to={offerUrl}>{property.name}</Link>
         </h2>
-        <p className="place-card__type">{type}</p>
+        <p className="place-card__type">{property.type}</p>
       </div>
     </article>
   );
