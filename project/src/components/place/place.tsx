@@ -5,16 +5,19 @@ import RatingBar from '../rating-bar/rating-bar';
 
 type PlaceProps = {
   property: Property,
-  setActiveOffer: any //TODO
+  parentClassName: string,
+  setActiveOffer: any //TODO: подобрать тип
 }
 
-function Place({property, setActiveOffer}: PlaceProps): JSX.Element {
+//TODO: пропсы размеров фото
+
+function Place({property, parentClassName, setActiveOffer}: PlaceProps): JSX.Element {
   const offerUrl = `/offer/${property.id}`;
   const firstPhoto = property.photos[0];
 
   return (
     <article
-      className="cities__place-card place-card"
+      className={`${parentClassName}__card place-card`}
       onMouseEnter={() => setActiveOffer(property.id)}
       onMouseLeave={() => setActiveOffer(null)}
     >
@@ -22,12 +25,12 @@ function Place({property, setActiveOffer}: PlaceProps): JSX.Element {
         <div className="place-card__mark">
           <span>Premium</span>
         </div>}
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className={`${parentClassName}__image-wrapper place-card__image-wrapper`}>
         <Link to={offerUrl}>
           <img className="place-card__image" src={firstPhoto.src} width={firstPhoto.width} height={firstPhoto.height} alt={firstPhoto.altText} />
         </Link>
       </div>
-      <div className="place-card__info">
+      <div className={`${parentClassName}__card-info place-card__info`}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{property.price} </b>

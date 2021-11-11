@@ -3,14 +3,15 @@ import {Property} from '../../types/property';
 import Place from '../place/place';
 
 type ListPlacesProps = {
-  properties: Property[]
+  properties: Property[],
+  parentClassName: string
 };
 
-function ListPlaces({properties}: ListPlacesProps): JSX.Element {
+function ListPlaces({properties, parentClassName}: ListPlacesProps): JSX.Element {
   const [, setActiveOffer] = useState(null);
 
   return (
-    <div className="cities__places-list places__list tabs__content">
+    <>
       {properties.map((property) => {
         const keyValue = property.id;
 
@@ -18,11 +19,12 @@ function ListPlaces({properties}: ListPlacesProps): JSX.Element {
           <Place
             key={keyValue}
             property={property}
+            parentClassName={parentClassName}
             setActiveOffer={setActiveOffer}
           />
         );
       })}
-    </div>
+    </>
   );
 }
 
