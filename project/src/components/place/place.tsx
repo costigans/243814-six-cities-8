@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import {Link} from 'react-router-dom';
 import {Property} from '../../types/property';
 import BookmarkButton from '../bookmark-button/bookmark-button';
@@ -5,19 +6,47 @@ import RatingBar from '../rating-bar/rating-bar';
 
 type PlaceProps = {
   property: Property,
-  parentClassName: string,
+  onPage: string,
   setActiveOffer: any //TODO: подобрать тип
 }
 
 //TODO: пропсы размеров фото
 
-function Place({property, parentClassName, setActiveOffer}: PlaceProps): JSX.Element {
+function Place({property, onPage, setActiveOffer}: PlaceProps): JSX.Element {
   const offerUrl = `/offer/${property.id}`;
   const firstPhoto = property.photos[0];
 
+  const isMainPage = onPage === 'main';
+  const isFavoritesPage = onPage === 'favorites';
+
+  const cardClass = classNames({
+    'place-card': true,
+    'cities__place-card': isMainPage,
+    'favorites__card': isFavoritesPage,
+  });
+
+  const imageWrapperClass = classNames({
+    'place-card__image-wrapper': true,
+    'cities__image-wrapper': isMainPage,
+    'favorites__image-wrapper': isFavoritesPage,
+  });
+
+  const infoClass = classNames({
+    'place-card__info': true,
+    'favorites__card-info': isFavoritesPage,
+  });
+
+  let photoWidth = 150;
+  let photoHeight = 110;
+
+  if (isMainPage) {
+    photoWidth = 260;
+    photoHeight = 200;
+  }
+
   return (
     <article
-      className={`${parentClassName}__card place-card`}
+      className={cardClass}
       onMouseEnter={() => setActiveOffer(property.id)}
       onMouseLeave={() => setActiveOffer(null)}
     >
@@ -25,12 +54,12 @@ function Place({property, parentClassName, setActiveOffer}: PlaceProps): JSX.Ele
         <div className="place-card__mark">
           <span>Premium</span>
         </div>}
-      <div className={`${parentClassName}__image-wrapper place-card__image-wrapper`}>
+      <div className={imageWrapperClass}>
         <Link to={offerUrl}>
-          <img className="place-card__image" src={firstPhoto.src} width={firstPhoto.width} height={firstPhoto.height} alt={firstPhoto.altText} />
+          <img className="place-card__image" src={firstPhoto.src} width={photoWidth} height={photoHeight} alt={firstPhoto.altText} />
         </Link>
       </div>
-      <div className={`${parentClassName}__card-info place-card__info`}>
+      <div className={infoClass}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{property.price} </b>

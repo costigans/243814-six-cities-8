@@ -4,10 +4,10 @@ import Place from '../place/place';
 
 type ListPlacesProps = {
   properties: Property[],
-  parentClassName: string
+  onPage: string
 };
 
-function ListPlaces({properties, parentClassName}: ListPlacesProps): JSX.Element {
+function ListPlaces({properties, onPage}: ListPlacesProps): JSX.Element {
   const [, setActiveOffer] = useState(null);
 
   return (
@@ -19,7 +19,7 @@ function ListPlaces({properties, parentClassName}: ListPlacesProps): JSX.Element
           <Place
             key={keyValue}
             property={property}
-            parentClassName={parentClassName}
+            onPage={onPage}
             setActiveOffer={setActiveOffer}
           />
         );
